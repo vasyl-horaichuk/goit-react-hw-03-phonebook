@@ -40,6 +40,14 @@ export class App extends Component {
     }));
   };
 
+  componentDidUpdate(prevProp, prevState) {
+    // prevState.contacts;
+    // this.state.contacts;
+    if (prevState.contacts !== this.state.contacts) {
+      console.log('UPDATE!!! CONTACTS CHANGE');
+    }
+  }
+
   changeFilterInput = e => {
     this.setState({ filter: e.target.value });
   };
