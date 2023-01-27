@@ -45,6 +45,7 @@ export class App extends Component {
     // this.state.contacts;
     if (prevState.contacts !== this.state.contacts) {
       console.log('UPDATE!!! CONTACTS CHANGE');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
 
