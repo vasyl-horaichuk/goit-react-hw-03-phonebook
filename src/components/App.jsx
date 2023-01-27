@@ -4,15 +4,11 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { Title } from './Title/Title';
 import { nanoid } from 'nanoid';
+import inicialContacts from '../components/user.contacts.json';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Vasyl Horaichuk', number: '459-12-57' },
-      { id: 'id-3', name: 'Rosie Simpson', number: '459-12-58' },
-      { id: 'id-4', name: 'Rosie Simpson', number: '459-12-59' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -40,9 +36,19 @@ export class App extends Component {
     }));
   };
 
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('contacts');
+    if (savedContacts !== null) {
+      const parsedContacts = JSON.parse(savedContacts);
+      this.setState({ contacts: parsedContacts });
+      console.log('CONTACTS AVAILABLE');
+    } else {
+      console.log('NO AVAILABLE');
+      this.setState({ contacts: inicialContacts });
+    }
+  }
+
   componentDidUpdate(prevProp, prevState) {
-    // prevState.contacts;
-    // this.state.contacts;
     if (prevState.contacts !== this.state.contacts) {
       console.log('UPDATE!!! CONTACTS CHANGE');
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
