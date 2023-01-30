@@ -72,13 +72,13 @@ export class App extends Component {
         <Title title="Phonebook" />
         <ContactForm onSubmit={this.addContact} />
         <Title title="Contacts" />
-        <ContactList
-          items={this.findContacts()}
-          onDelete={this.deleteContact}
-        />
         <Filter
           filter={this.state.filter}
           changeFilterInput={this.changeFilterInput}
+        />
+        <ContactList
+          items={this.findContacts()}
+          onDelete={this.deleteContact}
         />
       </div>
     );

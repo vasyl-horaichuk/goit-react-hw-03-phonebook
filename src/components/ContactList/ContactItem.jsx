@@ -1,12 +1,14 @@
+import { ContactItemButton } from './ContactItem.styled';
+
 export const ContactItem = ({ contact: { id, name, number }, onDelete }) => {
   return (
     <>
       <p>
-        {name}:{number}
+        {name} : {number}
       </p>
-      <button type="button" onClick={() => onDelete(id)}>
+      <ContactItemButton type="button" onClick={() => onDelete(id)}>
         Delete
-      </button>
+      </ContactItemButton>
     </>
   );
 };
